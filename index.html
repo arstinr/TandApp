@@ -6,6 +6,7 @@
     <title>TandApp - Healthcare App</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -18,7 +19,9 @@
                 <input type="time" id="medicine-time" required>
                 <button type="submit">Add Reminder</button>
             </form>
-            <div id="reminders"></div>
+            <div id="reminders" class="card">
+                <!-- Reminders will be inserted here -->
+            </div>
             <div id="progress-tracker">
                 <div id="progress-bar"></div>
             </div>
@@ -44,18 +47,30 @@
         <div id="delivery" class="page">
             <h1>Medicine Delivery</h1>
             <input type="text" id="medicine-search" placeholder="Search for medicines">
-            <form id="prescription-form">
+            <div class="file-upload">
+                <label for="prescription-upload" class="file-upload-label">
+                    <i class="material-icons">upload_file</i>
+                    Choose Prescription
+                </label>
                 <input type="file" id="prescription-upload" accept=".pdf,.jpg,.png">
-                <button type="submit">Upload Prescription</button>
-            </form>
+            </div>
             <div id="delivery-status"></div>
         </div>
 
         <!-- Navigation Bar -->
         <nav>
-            <button class="nav-btn active" data-page="home">Home</button>
-            <button class="nav-btn" data-page="consultation">Consultation</button>
-            <button class="nav-btn" data-page="delivery">Delivery</button>
+            <button class="nav-btn active" data-page="home">
+                <i class="material-icons">home</i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-page="consultation">
+                <i class="material-icons">chat</i>
+                <span>Consult</span>
+            </button>
+            <button class="nav-btn" data-page="delivery">
+                <i class="material-icons">local_shipping</i>
+                <span>Delivery</span>
+            </button>
         </nav>
     </div>
     <script src="script.js"></script>

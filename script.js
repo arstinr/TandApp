@@ -1,117 +1,131 @@
-// Hardcoded data
-const medicineSchedules = [];
-const faqData = [
-    { question: "What are the symptoms of COVID-19?", answer: "Common symptoms include fever, cough, and tiredness." },
-    { question: "How often should I exercise?", answer: "It's recommended to exercise for at least 150 minutes per week." },
-    { question: "What is a balanced diet?", answer: "A balanced diet includes a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats." }
-];
-const deliveryStatuses = [
-    { medicine: "Paracetamol", status: "Order Confirmed" },
-    { medicine: "Ibuprofen", status: "Out for Delivery" },
-    { medicine: "Aspirin", status: "Delivered" }
-];
-
-// Navigation
-const navButtons = document.querySelectorAll('.nav-btn');
-const pages = document.querySelectorAll('.page');
-
-navButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const pageId = button.getAttribute('data-page');
-        pages.forEach(page => page.classList.remove('active'));
-        navButtons.forEach(btn => btn.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        button.classList.add('active');
-    });
-});
-
-// Home Page
-const medicineForm = document.getElementById('medicine-form');
-const remindersContainer = document.getElementById('reminders');
-const progressBar = document.getElementById('progress-bar');
-
-medicineForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('medicine-name').value;
-    const dosage = document.getElementById('medicine-dosage').value;
-    const time = document.getElementById('medicine-time').value;
-    medicineSchedules.push({ name, dosage, time });
-    updateReminders();
-    updateProgressBar();
-    medicineForm.reset();
-});
-
-function updateReminders() {
-    remindersContainer.innerHTML = '';
-    medicineSchedules.forEach(schedule => {
-        const reminderElement = document.createElement('p');
-        reminderElement.textContent = `${schedule.name}, ${schedule.dosage}, ${schedule.time}`;
-        remindersContainer.appendChild(reminderElement);
-    });
-}
-
-function updateProgressBar() {
-    const progress = (medicineSchedules.length / 5) * 100; // Assuming 5 is the target
-    progressBar.style.width = `${Math.min(progress, 100)}%`;
-}
-
-// Consultation Page
-const symptomForm = document.getElementById('symptom-form');
-const chatMessages = document.getElementById('chat-messages');
-const faqList = document.getElementById('faq-list');
-
-symptomForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const symptom = document.getElementById('symptom-input').value;
-    addChatMessage('user', symptom);
-    // Mock AI response
-    setTimeout(() => {
-        addChatMessage('ai', "Based on your symptoms, you may want to consult a doctor. Please seek professional medical advice.");
-    }, 1000);
-    symptomForm.reset();
-});
-
-function addChatMessage(sender, message) {
-    const messageElement = document.createElement('p');
-    messageElement.textContent = `${sender === 'user' ? 'You' : 'AI'}: ${message}`;
-    chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Populate FAQ section
-faqData.forEach(faq => {
-    const faqElement = document.createElement('li');
-    faqElement.innerHTML = `<strong>Q: ${faq.question}</strong><br>A: ${faq.answer}`;
-    faqList.appendChild(faqElement);
-});
-
-// Delivery Page
-const medicineSearch = document.getElementById('medicine-search');
-const prescriptionForm = document.getElementById('prescription-form');
-const deliveryStatusContainer = document.getElementById('delivery-status');
-
-medicineSearch.addEventListener('input', () => {
-    const searchTerm = medicineSearch.value.toLowerCase();
-    const filteredMedicines = deliveryStatuses.filter(item => 
-        item.medicine.toLowerCase().includes(searchTerm)
-    );
-    updateDeliveryStatus(filteredMedicines);
-});
-
-prescriptionForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Prescription uploaded successfully!');
-    prescriptionForm.reset();
-});
-
 function updateDeliveryStatus(statuses) {
     deliveryStatusContainer.innerHTML = '';
     statuses.forEach(item => {
-        const statusElement = document.createElement('p');
-        statusElement.textContent = `${item.medicine}: ${item.status}`;
+        const statusClass = item.status.toLowerCase().replace(' ', '-');
+        const statusElement = document.createElement('div');
+        statusElement.className = `delivery-item status-${statusClass}`;
+        statusElement.innerHTML = `
+            <span>${item.medicine}</span>
+            <div class="status">
+                <span class="status-indicator"></span>
+                ${item.status}
+            </div>
+        `;
         deliveryStatusContainer.appendChild(statusElement);
     });
 }
 
-// Initial update of delivery statuses
-updateDeliveryStatus(deliveryStatuses);
+// Get all navigation buttons and pages
+const navButtons = document.querySelectorAll('.nav-btn');
+const pages = document.querySelectorAll('.page');
+
+// Add click handlers to navigation buttons
+navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Get the page id from the button's data-page attribute
+        const pageId = button.getAttribute('data-page');
+        
+        // Remove active class from all buttons and pages
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding page
+        button.classList.add('active');
+        document.getElementById(pageId).classList.add('active');
+    });
+});
+
+// Form submission handlers
+const medicineForm = document.getElementById('medicine-form');
+const symptomForm = document.getElementById('symptom-form');
+const chatMessages = document.getElementById('chat-messages');
+const remindersContainer = document.getElementById('reminders');
+const faqList = document.getElementById('faq-list');
+
+// Add console logs to verify elements are found
+console.log('Medicine Form:', medicineForm);
+console.log('Reminders Container:', remindersContainer);
+
+// Initialize reminders array
+const medicineSchedules = [];
+
+medicineForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('Form submitted'); // Debug log
+    
+    const name = document.getElementById('medicine-name').value;
+    const dosage = document.getElementById('medicine-dosage').value;
+    const time = document.getElementById('medicine-time').value;
+    
+    console.log('New reminder:', { name, dosage, time }); // Debug log
+    
+    // Add to reminders
+    const reminder = { name, dosage, time };
+    medicineSchedules.push(reminder);
+    console.log('Updated schedules:', medicineSchedules); // Debug log
+    
+    updateReminders();
+    medicineForm.reset();
+});
+
+function updateReminders() {
+    console.log('Updating reminders display'); // Debug log
+    console.log('Current schedules:', medicineSchedules); // Debug log
+    
+    remindersContainer.innerHTML = '';
+    medicineSchedules.forEach(schedule => {
+        const reminderElement = document.createElement('div');
+        reminderElement.className = 'reminder-item';
+        reminderElement.innerHTML = `
+            <span class="reminder-time">${schedule.time}</span>
+            <div>
+                <h3>${schedule.name}</h3>
+                <p>${schedule.dosage}</p>
+            </div>
+        `;
+        remindersContainer.appendChild(reminderElement);
+    });
+}
+
+symptomForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const symptom = document.getElementById('symptom-input').value;
+    
+    // Add user message
+    addChatMessage('user', symptom);
+    
+    // Mock AI response
+    setTimeout(() => {
+        addChatMessage('ai', 'Based on your symptoms, I recommend consulting with a healthcare professional. Would you like me to help you find a doctor?');
+    }, 1000);
+    
+    symptomForm.reset();
+});
+
+// Chat message handler
+function addChatMessage(type, message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${type}-message`;
+    messageDiv.textContent = message;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Add FAQ items
+const faqs = [
+    { q: "What are common cold symptoms?", a: "Common cold symptoms include runny nose, sore throat, and mild fever." },
+    { q: "When should I see a doctor?", a: "See a doctor if symptoms persist for more than a week or become severe." },
+    { q: "How can I maintain good health?", a: "Exercise regularly, eat a balanced diet, and get adequate sleep." }
+];
+
+function initializeFAQs() {
+    faqList.innerHTML = '';
+    faqs.forEach(faq => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <h3>${faq.q}</h3>
+            <p>${faq.a}</p>
+        `;
+        faqList.appendChild(li);
+    });
+}
