@@ -189,5 +189,14 @@ function initializeDrugstores() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeFAQs();
     initializeDrugstores();
+    
+    // Popup handling
+    const popup = document.getElementById('welcome-popup');
+    const closeButton = document.getElementById('close-popup');
+    
+    closeButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+    
     console.log('App initialized');
 });
