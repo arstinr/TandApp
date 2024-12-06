@@ -138,8 +138,56 @@ function initializeFAQs() {
     });
 }
 
-// Call initializeFAQs when the DOM is fully loaded
+// Hardcoded drugstore data
+const nearbyDrugstores = [
+    {
+        name: "HealthPlus Pharmacy",
+        address: "123 Main Street",
+        distance: "0.3 km",
+        isOpen: true,
+        rating: "4.8"
+    },
+    {
+        name: "MediCare Drugstore",
+        address: "456 Oak Avenue",
+        distance: "0.7 km",
+        isOpen: true,
+        rating: "4.6"
+    },
+    {
+        name: "Community Pharmacy",
+        address: "789 Pine Road",
+        distance: "1.2 km",
+        isOpen: false,
+        rating: "4.5"
+    }
+];
+
+function initializeDrugstores() {
+    const drugstoresContainer = document.getElementById('drugstores');
+    drugstoresContainer.innerHTML = '';
+    
+    nearbyDrugstores.forEach(store => {
+        const storeElement = document.createElement('div');
+        storeElement.className = 'drugstore-card';
+        storeElement.innerHTML = `
+            <div class="drugstore-icon">
+                <i class="material-icons">local_pharmacy</i>
+            </div>
+            <div class="drugstore-info">
+                <h3>${store.name}</h3>
+                <p>${store.address}</p>
+                <p>⭐ ${store.rating} • ${store.isOpen ? '<span style="color: var(--success)">Open</span>' : '<span style="color: #666">Closed</span>'}</p>
+            </div>
+            <div class="distance">${store.distance}</div>
+        `;
+        drugstoresContainer.appendChild(storeElement);
+    });
+}
+
+// Add this to your existing DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
     initializeFAQs();
-    console.log('FAQs initialized'); // Debug log
+    initializeDrugstores();
+    console.log('App initialized');
 });

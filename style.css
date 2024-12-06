@@ -28,6 +28,14 @@ h1 {
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h1 .material-icons {
+    color: var(--primary);
+    font-size: 2.5rem;
 }
 
 /* Card Styles */
@@ -359,4 +367,52 @@ input[type="file"] {
 #progress-tracker {
     margin-top: 32px;
     margin-bottom: 24px;
+}
+
+/* Drugstore Cards */
+.section-title {
+    margin: 32px 0 16px 0;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.drugstore-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.drugstore-icon {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.drugstore-info {
+    flex: 1;
+}
+
+.drugstore-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+}
+
+.drugstore-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.distance {
+    color: var(--primary);
+    font-weight: 500;
 }

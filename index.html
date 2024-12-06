@@ -12,7 +12,7 @@
     <div id="app">
         <!-- Home Page -->
         <div id="home" class="page active">
-            <h1>TandApp</h1>
+            <h1><i class="material-icons">medication</i> TandApp</h1>
             <form id="medicine-form">
                 <input type="text" id="medicine-name" placeholder="Medicine Name" required>
                 <input type="text" id="medicine-dosage" placeholder="Dosage" required>
@@ -29,7 +29,7 @@
 
         <!-- Consultation Page -->
         <div id="consultation" class="page">
-            <h1>AI Consultation</h1>
+            <h1><i class="material-icons">health_and_safety</i> AI Consultation</h1>
             <div id="chat-interface">
                 <div id="chat-messages"></div>
                 <form id="symptom-form">
@@ -45,7 +45,7 @@
 
         <!-- Delivery Page -->
         <div id="delivery" class="page">
-            <h1>Medicine Delivery</h1>
+            <h1><i class="material-icons">local_pharmacy</i> Medicine Delivery</h1>
             <input type="text" id="medicine-search" placeholder="Search for medicines">
             <div class="file-upload">
                 <label for="prescription-upload" class="file-upload-label">
@@ -54,18 +54,27 @@
                 </label>
                 <input type="file" id="prescription-upload" accept=".pdf,.jpg,.png">
             </div>
+            
+            <!-- New Drugstores Section -->
+            <div class="section-title">
+                <h2>Nearby Drugstores</h2>
+            </div>
+            <div id="drugstores" class="card-list">
+                <!-- Drugstores will be inserted here -->
+            </div>
+            
             <div id="delivery-status"></div>
         </div>
 
         <!-- Navigation Bar -->
         <nav>
-            <button class="nav-btn active" data-page="home">
-                <i class="material-icons">home</i>
-                <span>Home</span>
-            </button>
             <button class="nav-btn" data-page="consultation">
                 <i class="material-icons">chat</i>
                 <span>Consult</span>
+            </button>
+            <button class="nav-btn active" data-page="home">
+                <i class="material-icons">home</i>
+                <span>Home</span>
             </button>
             <button class="nav-btn" data-page="delivery">
                 <i class="material-icons">local_shipping</i>
