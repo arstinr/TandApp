@@ -1,0 +1,46 @@
+Create a mobile-responsive prototype for a healthcare app called TandApp using HTML, CSS, and JavaScript. The app should simulate a mobile app interface and include the following MVP features:
+
+### Requirements
+1. **Mobile-First Design**
+   - The app should look like a mobile app when viewed on smaller screens (e.g., 375px width for phones).
+   - Use CSS media queries to ensure responsiveness.
+
+2. **Features**
+   - **Home Page (Medicine Intake Tracker)**:
+     - Include a form to add a new medicine schedule (fields: medicine name, dosage, time).
+     - Display a list of reminders (e.g., “Paracetamol, 10 AM”).
+     - Include a progress tracker (e.g., a horizontal bar or calendar showing adherence to medication schedules).
+   - **Consultation Page (AI-Based Medical Consultation)**:
+     - A chat-like interface where users can input symptoms and receive mock responses (e.g., “You may want to consult a doctor”).
+     - Include an FAQ section displaying common health-related questions and predefined answers.
+   - **Delivery Page (Medicine Delivery Service)**:
+     - A search bar for users to find medicines (use hardcoded examples like “Paracetamol” and “Ibuprofen”).
+     - A form to upload a prescription (file input).
+     - A list of medicines with mock delivery statuses (e.g., “Order Confirmed,” “Out for Delivery”).
+
+3. **Navigation**
+   - Add a bottom navigation bar with three tabs: "Home," "Consultation," and "Delivery."
+   - Ensure smooth navigation between pages.
+
+4. **Hardcoded Data**
+   - Use hardcoded arrays or objects for:
+     - Medicine schedules and reminders.
+     - FAQ questions and answers.
+     - Delivery status updates.
+
+5. **Aesthetics**
+   - Use light colors (e.g., white, light blue, green) for a clean and soothing interface.
+   - Use a simple, readable font like "Roboto" or "Inter."
+   - Buttons and input fields should have rounded corners for a modern touch.
+
+6. **Folder Structure**
+   - Include three files:
+     - **index.html**: Main HTML file containing the app’s structure.
+     - **style.css**: CSS file for styling and responsiveness.
+     - **script.js**: JavaScript file for interactivity and data handling.
+
+7. **Additional Notes**
+   - Ensure comments are included in the code to explain key sections and functionality.
+   - Use basic JavaScript (no frameworks like React or Vue).
+
+Generate the full project files for this prototype with the specified features
