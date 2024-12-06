@@ -119,6 +119,14 @@ const faqs = [
 ];
 
 function initializeFAQs() {
+    const faqList = document.getElementById('faq-list');
+    console.log('FAQ List Element:', faqList); // Debug log
+    
+    if (!faqList) {
+        console.error('FAQ list element not found!');
+        return;
+    }
+    
     faqList.innerHTML = '';
     faqs.forEach(faq => {
         const li = document.createElement('li');
@@ -129,3 +137,9 @@ function initializeFAQs() {
         faqList.appendChild(li);
     });
 }
+
+// Call initializeFAQs when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeFAQs();
+    console.log('FAQs initialized'); // Debug log
+});
